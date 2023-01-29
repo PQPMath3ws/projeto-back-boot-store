@@ -3,6 +3,9 @@ import express from "express";
 
 import { closeDbConnection } from "./database.js";
 
+//Section to import routers
+import cartRouter from "../routes/UserRoutes.js";
+
 const app = express();
 let server = null;
 
@@ -21,6 +24,8 @@ function initializeServer() {
     if (!server) {
         app.use(cors());
         app.use(express.json());
+
+        app.use([cartRouter])
 
         server = app.listen(5000);
     }

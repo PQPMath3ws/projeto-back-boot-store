@@ -1,7 +1,9 @@
 import { Router } from "express";
 
-const userRouter = Router()
+import { checkOut } from '../controllers/userCheckout.js'
 
-userRouter.post('/checkout')
+const cartRouter = Router()
 
-export default userRouter
+cartRouter.post('/checkout', checkOut)
+
+export default cartRouter
