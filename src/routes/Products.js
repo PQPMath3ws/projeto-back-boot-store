@@ -38,4 +38,17 @@ router.all("/api/get-product/:id", async (req, res) => {
     }
 });
 
+router.all("/api/search", async (req, res) => {
+    if (req.method !== "POST") return res.status(errors[405].code).send(errors[405]);
+    if (req.headers["content-type"] !== "application/json") return res.status().send();
+    const { search } = req.body;
+    if (!search) {
+        const products = await getDbInstance().collection("products").find().toArray();
+        return res.status(200).send(products);
+    }
+    let products = await getDbInstance().collection("products").find().toArray();
+    products = products.filter(product => product.name.toLowerCase().includes(search));
+    return res.status(200).send(products);
+});
+
 export default router;
