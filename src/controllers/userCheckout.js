@@ -3,7 +3,7 @@ import { getDbInstance } from "../config/database.js"
 export async function checkOut(req, res) {
     //variables from front side
     const { user } = req.headers
-    const { cartUser } = req.body
+    //const { cartUser } = req.body
 
     //variables of function
 
@@ -14,9 +14,9 @@ export async function checkOut(req, res) {
         await getDbInstance.collection('userPurchases').insertOne({
             user: user,
             date: today,
-            valueTotal: cartUser.valueTotal,
-            freight: cartUser.freight,
-            products: cartUser.products
+            //valueTotal: cartUser.valueTotal,
+            //freight: cartUser.freight,
+            //products: cartUser.products
         })
 
         res.status(201).send('Sua compra foi finalizada com sucesso')

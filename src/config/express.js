@@ -25,7 +25,7 @@ function initializeServer() {
         app.use(cors());
         app.use(express.json());
 
-        app.use([cartRouter])
+        app.use(cartRouter)
 
         server = app.listen(5000);
     }
