@@ -3,8 +3,11 @@ import express from "express";
 
 import { closeDbConnection } from "./database.js";
 
-//Section to import routers
-import cartRouter from "../routes/UserRoutes.js";
+import CartRouter from "../routes/UserRoutes.js";
+import AllRoutes from "../routes/All.js";
+import ProductsRoutes from "../routes/Products.js";
+import ShoppingRoutes from "../routes/Shopping.js";
+import UserRoutes from "../routes/User.js";
 
 const app = express();
 let server = null;
@@ -25,7 +28,11 @@ function initializeServer() {
         app.use(cors());
         app.use(express.json());
 
-        app.use(cartRouter)
+        app.use(CartRouter)
+        app.use(UserRoutes);
+        app.use(ProductsRoutes);
+        app.use(ShoppingRoutes);
+        app.use(AllRoutes);
 
         server = app.listen(5000);
     }
